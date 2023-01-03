@@ -1,30 +1,27 @@
 <template>
   <div class="home">
     <h1>home page</h1>
-    <input type="text" v-model="search">
-    <p v-if="search">Search name is => {{ search }}</p>
-    <div v-for="name in filterNames" :key="name">
-      {{ name }}
-    </div>
+    <PostList :posts = "posts"></PostList>
   </div>
 </template>
 
 <script>
+import PostList from '../components/PostList'
 import { ref } from '@vue/reactivity'
-import { computed } from '@vue/runtime-core';
 
 export default {
+  components: { PostList },
   setup() {
-   let names = ref(['aung aung','kyaw kyaw','mg mg','su su']);
-   let search = ref('');
-   let filterNames = computed(()=> {
-    return names.value.filter((name)=> {
-      return name.includes(search.value);
-    })
-   })
+   let posts = ref([
+    {title:'title 1',body:'Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo non quibusdam expedita placeat obcaecati saepe in doloribus quasi cum nihil commodi optio, itaque ratione perferendis sed modi consectetur blanditiis omnis?',id:1},
+    {title:'title 2',body:'Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo non quibusdam expedita placeat obcaecati saepe in doloribus quasi cum nihil commodi optio, itaque ratione perferendis sed modi consectetur blanditiis omnis?',id:2},
+    {title:'title 3',body:'Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo non quibusdam expedita placeat obcaecati saepe in doloribus quasi cum nihil commodi optio, itaque ratione perferendis sed modi consectetur blanditiis omnis?',id:3},
+    {title:'title 4',body:'Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo non quibusdam expedita placeat obcaecati saepe in doloribus quasi cum nihil commodi optio, itaque ratione perferendis sed modi consectetur blanditiis omnis?',id:4},
+    {title:'title 5',body:'Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo non quibusdam expedita placeat obcaecati saepe in doloribus quasi cum nihil commodi optio, itaque ratione perferendis sed modi consectetur blanditiis omnis?',id:5},
+   ])
 
 
-   return {names,search,filterNames}
+   return {posts}
   }
 }
 </script>
